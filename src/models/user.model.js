@@ -5,6 +5,7 @@ const user = createSchema({
     role: {type: mongoose.Schema.Types.ObjectId, ref: 'role'},
     name: {type: String},
     phone: {type: String, unique: true},
+    device_token: {type: String},
     available : {type: Boolean, default: true},
     deleteAt: {type: Date, default: null}
 });

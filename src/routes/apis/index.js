@@ -8,8 +8,13 @@ const Role = require('../../models/role.model');
 const upload = require("../../common/uploadfile");
 
 
-
+//AUT API
 route.post('/login',AuthController.login);
+route.post('/refresh-token',AuthController.refreshToken);
+
+
+
+
 route.use('/getlichsu',[auth,roleTeacher],upload.array('image'),TeacherController.getListSu)
 
 //APITESTING

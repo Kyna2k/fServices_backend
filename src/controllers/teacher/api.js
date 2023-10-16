@@ -1,7 +1,5 @@
 const { Response } = require("../../models/response")
 
-
-
 class TeachAPIController {
     getListSu = async (req,res) => {
         console.log(req.files)
