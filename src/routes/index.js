@@ -1,7 +1,8 @@
+const ApiRoute = require('./apis/index');
+
+
 const route = (app) => {
-    app.get("/",(req,res) => {
-        console.log(process.env.DATABASE);
-    })
+    app.use('/api',ApiRoute)
 };
 
 module.exports = route;
