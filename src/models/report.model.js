@@ -8,8 +8,9 @@ const report = createSchema({
    user_handle: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
    mistake: {type: mongoose.Schema.Types.ObjectId, ref: 'mistake'},
    description: {type: String},
-   status: {type: Number},
+   status: {type: Number}, // 0 - mới tạo, 1 - là có người xử lý, 2 là xử lý thành công, -1 là hủy
    rating : {type: Number},
+   images : {type: Array},
    accept_report : {type: Date},
    done_report : {type: Date},
 });

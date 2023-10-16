@@ -3,19 +3,20 @@ const route = express.Router();
 const AuthController = require('../../controllers/authen/index');
 const TeacherController = require('../../controllers/teacher/api');
 const auth = require("../../middlewares/authencation.middleware");
-const {roleTeacher} = require("../../middlewares/role.middleware")
+const {roleTeacher,roleManager} = require("../../middlewares/role.middleware")
 const Role = require('../../models/role.model');
 const upload = require("../../common/uploadfile");
 
 
-//AUT API
+//AUT API 
 route.post('/login',AuthController.login);
 route.post('/refresh-token',AuthController.refreshToken);
 
 
+//API TEACHER
+route.post('/getlichsu',upload.array('image'),TeacherController.getListSu)
 
 
-route.use('/getlichsu',[auth,roleTeacher],upload.array('image'),TeacherController.getListSu)
 
 //APITESTING
 route.post('/addRole',async (req,res) =>{
