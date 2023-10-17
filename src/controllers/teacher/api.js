@@ -19,8 +19,8 @@ class TeachAPIController {
     addRoom = async (req,res) =>{
         const{name} = req.body;
         if(name){
-            const room = await (new Room({name: name}));
-            return res.json(new Response({message: "Thành công", data: room}));
+            const room = await (new Room({name: name})).save();
+            return res.json(new Response({data: room}));
         }else{
             return res.json(new FailResponse({message: 'Vui lòng nhập tên phòng'}));
         }       
@@ -28,10 +28,10 @@ class TeachAPIController {
     addMistake = async (req,res) =>{
         const{from, description} = req.body;
         if(from){
-            const misTake = await (new Mistake({from: from, description: description}));
-            return res.json(new Response({message: "Thành công", data: misTake}));
+            const misTake = await (new Mistake({from: from, description: description})).save();
+            return res.json(new Response({ data: misTake}));
         }else{
-            return res.json(new FailResponse({message: 'Vui lòng nhập nguyên nhân   '}));
+            return res.json(new FailResponse({message: 'Vui lòng nhập nguyên nhân '}));
         }
     }
 };
