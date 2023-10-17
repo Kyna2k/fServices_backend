@@ -21,6 +21,7 @@ route.post('/add-mistake',[auth,roleTeacher],TeacherController.addMistake);
 
 //API MANAGER
 
+route.post('/getlichsu',TeacherController.getListSu)
 
 
 
