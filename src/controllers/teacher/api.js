@@ -1,5 +1,9 @@
-const { Response } = require("../../models/response")
+const { Response, FailResponse } = require("../../models/response")
 const cloudinary = require('../../common/cloudinary')
+const GenToken = require("../../common/gentoken");
+const Room = require('../../models/room.model');
+const Mistake = require('../../models/mistake.model');
+const JWT = require('jsonwebtoken');
 class TeachAPIController {
     getListSu = async (req,res) => {
         const {files} = req
@@ -11,7 +15,25 @@ class TeachAPIController {
         }
         
         return res.json(new Response({message: "Thành công", data: images}));
+    };
+    addRoom = async (req,res) =>{
+        const{name} = req.body;
+        if(name){
+            const room = await (new Room({name: name}));
+            return res.json(new Response({message: "Thành công", data: room}));
+        }else{
+            return res.json(new FailResponse({message: 'Vui lòng nhập tên phòng'}));
+        }       
+    };
+    addMistake = async (req,res) =>{
+        const{from, description} = req.body;
+        if(from){
+            const misTake = await (new Mistake({from: from, description: description}));
+            return res.json(new Response({message: "Thành công", data: misTake}));
+        }else{
+            return res.json(new FailResponse({message: 'Vui lòng nhập nguyên nhân   '}));
+        }
     }
-}
+};
 
 module.exports = new TeachAPIController();
