@@ -52,7 +52,7 @@ class TeachAPIController {
             })
         }))
     }
-}
+    getList = async (req,res) => {
         const {files} = req
         const images = [];
         //tải hình lên nhiều hình
