@@ -14,7 +14,7 @@ route.post('/refresh-token',AuthController.refreshToken);
 
 
 //API TEACHER
-route.post('/getlichsu',upload.array('image'),TeacherController.getListSu)
+route.post('/getlichsu',TeacherController.getListSu)
 
 
 

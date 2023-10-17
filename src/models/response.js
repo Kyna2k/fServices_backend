@@ -13,5 +13,12 @@ class FailResponse {
         this.data = data;
     }
 }
-module.exports = {Response, FailResponse}
+class Page {
+    constructor({data,currentPage,totalPage}){
+        this.data = data;
+        this.currentPage = currentPage;
+        this.totalPage = totalPage;
+    }
+}
+module.exports = {Response, FailResponse, Page}
 
