@@ -11,7 +11,7 @@ const auth = async (req,res, next) => {
         if(error) return res.json(new FailResponse({status: 401, message: "Unauthorized"}));
         console.log(payload);
         req['role'] = payload.role;
-
+        req['id'] = payload.id;
      });
      next();
 }
