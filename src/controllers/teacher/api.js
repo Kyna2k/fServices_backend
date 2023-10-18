@@ -75,9 +75,10 @@ class TeachAPIController {
         .populate("room", "name")
         .populate("type", "name time_handle")
         .populate("user_handle")
-        .sort({ createAT: 1 })
-        .limit(perPage)
+        .sort({createdAt: -1})
         .skip(skip)
+        .limit(perPage)
+
       const count = await Report.find({}).count();
       return res.json(
         new Response({

@@ -23,7 +23,7 @@ class AdminAPIController {
       .populate("user_create", "name phone")
       .populate("user_handle", "name phone")
       .populate("mistake", "from description")
-      .sort({ createAT: 1 }) // 1 -1
+      .sort({createdAt: -1}) // 1 -1
       .skip(skip)
       .limit(perPage);
     const count = await Report.find({}).count();
@@ -41,14 +41,14 @@ class AdminAPIController {
     const id = req["id"];
     try {
       const { page } = req.query;
-      const perPage = 1;
+      const perPage = 10;
       const _page = page || 1;
       const skip = skipPage({ perPage: perPage, page: _page });
       const newReport = await Report.find({ user_handle: id })
         .populate("room", "name")
         .populate("type", "name time_handle")
         .populate("user_handle")
-        .sort({ createAT: 1 })
+        .sort({createdAt: -1})
         .skip(skip)
         .limit(perPage);
       const count = await Report.find({}).count();
