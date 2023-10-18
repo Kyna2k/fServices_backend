@@ -9,7 +9,6 @@ const auth = async (req,res, next) => {
      JWT.verify(token,process.env.SECRETKEY,(error,payload)=>{
         if(error instanceof JWT.TokenExpiredError) return res.json(new FailResponse({status: 403, message: "TokenExpiredError"}));
         if(error) return res.json(new FailResponse({status: 401, message: "Unauthorized"}));
-        console.log(payload);
         req['role'] = payload.role;
         req['id'] = payload.id;
      });

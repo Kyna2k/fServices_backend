@@ -13,6 +13,13 @@ class FailResponse {
         this.data = data;
     }
 }
+class ErrorServerResponse {
+    constructor({status = 500, message = "Error From Server", data = null}){
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+}
 class Page {
     constructor({data,currentPage,totalPage}){
         this.data = data;
@@ -20,5 +27,5 @@ class Page {
         this.totalPage = totalPage;
     }
 }
-module.exports = {Response, FailResponse, Page}
+module.exports = {Response, FailResponse, Page,ErrorServerResponse}
 

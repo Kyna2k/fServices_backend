@@ -7,7 +7,9 @@ const auth = require("../../middlewares/authencation.middleware");
 const {roleTeacher,roleManager,roleAdmin} = require("../../middlewares/role.middleware")
 const Role = require('../../models/role.model');
 const upload = require("../../common/uploadfile");
-const Room = require("../../models/room.model");
+const Test = require ('../../controllers/test/api');
+
+
 
 //AUT API 
 route.post('/login',AuthController.login);
@@ -15,14 +17,19 @@ route.post('/refresh-token',AuthController.refreshToken);
 
 
 //API TEACHER
-// route.post('/getlichsu',upload.array('image'),TeacherController.addImage);
-route.post('/add-room',[auth,roleTeacher],TeacherController.addRoom);
-route.post('/add-mistake',[auth,roleTeacher],TeacherController.addMistake);
+route.get('/create-report',[auth,roleTeacher],TeacherController.getCreateReport);
 route.post('/create-report',upload.array('images'),[auth,roleTeacher],TeacherController.createReport);
-route.get('/get-list-report',[auth,roleTeacher],TeacherController.getListReport);
+
+route.get('/get-teacher-history-reports',[auth,roleTeacher],TeacherController.getHistoryReports);
+
+//API ADMIN
+route.get('/get-list-report',[auth,roleAdmin],AdminController.getListReport);
+route.get('/get-admin-history-reports',[auth,roleAdmin],AdminController.getHistoryReports);
 
 //API MANAGER
-route.get('/get-view-list-report',[auth,roleAdmin],AdminController.viewListReport);
+
+
+
 
 
 
@@ -32,7 +39,9 @@ route.post('/addRole',async (req,res) =>{
     const role = await (new Role({name: name})).save();
     return res.json(role);
 });
-route.post('/type',TeacherController.suLy);
+route.post('/type',Test.addTypeReport);
+route.post('/add-room',Test.addRoom);
+route.post('/add-mistake',Test.addMistake);
 
 
 

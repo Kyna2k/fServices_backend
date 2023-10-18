@@ -1,7 +1,8 @@
 
 
 const skipPage = ({perPage,page}) => {
-    return (perPage * page) - perPage;
+    const skip = (perPage * page) - perPage;
+    return skip;
 }
 
 module.exports = {skipPage} 
