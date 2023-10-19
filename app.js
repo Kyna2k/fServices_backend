@@ -6,6 +6,7 @@ const logger = require('morgan');
 const route = require('./src/routes/index');
 const app = express();
 const database = require('./src/config/database/index');
+const session = require("express-session");
 
 
 // view engine setup
@@ -17,7 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(
+    session({
+      resave: true,
+      saveUninitialized: true,
+      secret: process.env.SECRETKEY,
+      cookie: { maxAge: 15*60*1000 },
+    })
+  );
 route(app);
 database.connect();
 
