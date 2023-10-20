@@ -70,7 +70,6 @@ class TeachAPIController {
       const perPage = 3;
       const _page = page || 1;
       const skip = skipPage({ perPage: perPage, page:_page });
-      console.log(skip, _page,perPage);
       const newReport = await Report.find({ user_create: id })
         .populate("room", "name")
         .populate("type", "name time_handle")
