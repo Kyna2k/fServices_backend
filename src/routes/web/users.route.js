@@ -1,5 +1,4 @@
 
-
 const express = require("express");
 const route = express.Router();
 const AuthWeb = require('../../middlewares/authencation.middleware.web');
