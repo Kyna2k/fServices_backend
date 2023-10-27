@@ -14,10 +14,10 @@ class FailResponse {
     }
 }
 class ErrorServerResponse {
-    constructor({status = 500, message = "Error From Server", data = null}){
-        this.status = status;
-        this.message = message;
-        this.data = data;
+    constructor(){
+        this.status = 500;
+        this.message =  "Error From Server";
+        this.data = null;
     }
 }
 class Page {

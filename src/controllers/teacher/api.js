@@ -32,9 +32,12 @@ class TeachAPIController {
     try {
       const { files } = req;
       const images = [];
+      console.log(files);
       if (files) {
         for (let i = 0; i < files.length; i++) {
           const image = await cloudinary.uploader.upload(files[i].path);
+          console.log(image);
+
           images.push(image.url);
         }
       }

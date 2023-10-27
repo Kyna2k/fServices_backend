@@ -18,7 +18,7 @@ class AutWebController {
                     website: 'kynalab.com',
                     type: 'Huy đẹp trai',
                 }
-                res.redirect('users');
+                res.redirect('/report');
             }else{
                 res.redirect(req.get('referer'));
             }

@@ -1,0 +1,97 @@
+<div class="card">
+    <div class="card-body">
+        <form action="/users/create" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">Room</label>
+                <div class="input-group input-group-merge">
+                    <input disabled type="text" value="{{data.room.name }}" id="basic-icon-default-email"
+                        class="form-control" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">Loại sự cố</label>
+                <div class="input-group input-group-merge">
+                    <input disabled type="text" value="{{data.type.name }}" id="basic-icon-default-email"
+                        class="form-control" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">Thời gian xử lý</label>
+                <div class="input-group input-group-merge">
+    
+                    <input disabled type="text" value="{{data.type.time_handle }}" id="basic-icon-default-email"
+                        class="form-control" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">User Create</label>
+                <div class="input-group input-group-merge">
+
+                    <input disabled type="text" value="{{data.user_create.email }}" id="basic-icon-default-email"
+                        class="form-control" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-message">Mô tả</label>
+                <div class="input-group input-group-merge">
+                    <textarea disabled id="basic-icon-default-message" class="form-control"
+                        placeholder="Hi, Do you have a moment to talk Joe?"
+                        aria-label="Hi, Do you have a moment to talk Joe?"
+                        aria-describedby="basic-icon-default-message2">{{data.description}}</textarea>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="defaultSelect" class="form-label">Available</label>
+                <div class="mb-3">
+                    {{#statusReport data.status}} {{/statusReport}}
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Created At</label>
+                <div class="mb-3">
+                    <input class="form-control" disabled  name="thoigian"
+                        value="{{#formatDate data.createdAt "long"}}{{/formatDate}}"  />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Thời gian nhận xử lý</label>
+                <div class="mb-3">
+                    <input class="form-control" disabled name="thoigian"
+                        value="{{#formatDate data.accept_report "long"}}{{/formatDate}}" id="html5-datetime-local-input" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="html5-datetime-local-input" class="col-md-2 col-form-label">Thời gian hoàn thành</label>
+                <div class="mb-3">
+                    <input class="form-control" disabled  name="thoigian"
+                        value="{{#formatDate data.done_report "long"}}{{/formatDate}}" id="html5-datetime-local-input" />
+                </div>
+            </div>
+            <section id="gallery" class="gallery">
+                <div class="container">
+
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>Gallery</h2>
+                        <p>Check our Gallery</p>
+                    </div>
+                    <div class="row g-0" style="align-items: center; " data-aos="fade-left">
+                        {{#each data.images}}
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                                <a href="{{this}}" class="gallery-lightbox">
+                                    <img src="{{this}}" style="background: whitesmoke;" alt="" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                        {{/each }}
+
+                    </div>
+
+
+                </div>
+            </section>
+        </form>
+    </div>
+</div>
