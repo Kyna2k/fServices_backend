@@ -21,10 +21,15 @@ route.get('/create-report',[auth,roleTeacher],TeacherController.getCreateReport)
 route.post('/create-report',upload.array('images'),[auth,roleTeacher],TeacherController.createReport);
 
 route.get('/get-teacher-history-reports',[auth,roleTeacher],TeacherController.getHistoryReports);
+route.get('/teacher-get-detail-report/:id',[auth,roleTeacher],TeacherController.getDetailReport);
 
 //API ADMIN
 route.get('/get-list-report',[auth,roleAdmin],AdminController.getListReport);
 route.get('/get-admin-history-reports',[auth,roleAdmin],AdminController.getHistoryReports);
+route.get('/get-detail-report/:id',[auth,roleAdmin],AdminController.getDetailReport);
+route.post('/accept-report/:id',[auth,roleAdmin],AdminController.acceptReport);
+route.post('/done-report/:id',[auth,roleAdmin],AdminController.doneReport);
+route.delete('/cancel-report/:id',[auth,roleAdmin],AdminController.cancelReport);
 
 //API MANAGER
 

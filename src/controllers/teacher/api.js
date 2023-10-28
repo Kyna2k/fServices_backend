@@ -97,6 +97,25 @@ class TeachAPIController {
       );
     }
   };
+  getDetailReport = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const detailReport = await Report.findById(id)
+        .populate("room", "name")
+        .populate("type", "name time_handle")
+        .populate("user_handle");
+      return res.json(
+        new Response({
+          data: detailReport,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+      return res.json(
+        new FailResponse({ status: 400, message: "Không thể lấy dữ liệu " })
+      );
+    }
+  };
 }
 
 module.exports = new TeachAPIController();
