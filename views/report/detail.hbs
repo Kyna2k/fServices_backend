@@ -68,6 +68,23 @@
                         value="{{#formatDate data.done_report "long"}}{{/formatDate}}" id="html5-datetime-local-input" />
                 </div>
             </div>
+             <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-email">Error From </label>
+                <div class="input-group input-group-merge">
+
+                    <input disabled type="text" value="{{data.mistake.from }}" id="basic-icon-default-email"
+                        class="form-control" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-message">Mô tả</label>
+                <div class="input-group input-group-merge">
+                    <textarea disabled id="basic-icon-default-message" class="form-control"
+                        placeholder=""
+                        aria-label="Hi, Do you have a moment to talk Joe?"
+                        aria-describedby="basic-icon-default-message2">{{data.mistake.description}}</textarea>
+                </div>
+            </div>
             <section id="gallery" class="gallery">
                 <div class="container">
 

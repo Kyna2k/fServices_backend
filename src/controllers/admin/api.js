@@ -98,6 +98,7 @@ class AdminAPIController {
     const user_handle = req["id"];
     const { id } = req.params;
     try {
+      
       const detailReport = await Report.findByIdAndUpdate(
         id,
         { user_handle: user_handle, status: 1, accept_report: Date.now() },
@@ -126,7 +127,7 @@ class AdminAPIController {
       if(!from){
         throw new Error('Thiếu trường');
       }
-      const mistake = await (new Mistake({from : from, description: description ?? ''}));
+      const mistake = await (new Mistake({from : from, description: description ?? ''})).save();
       const detailReport = await Report.findByIdAndUpdate(
         id,
         { status: 2, done_report: Date.now(), mistake: mistake._id },
@@ -156,7 +157,7 @@ class AdminAPIController {
         throw 'Khi hủy report vui lòng điền đủ thông tin lỗi từ ai, và mô tả';
       }
       
-      const mistake = await (new Mistake({from : from, description: description ?? ''}));
+      const mistake = await (new Mistake({from : from, description: description ?? ''})).save();
       const detailReport = await Report.findByIdAndUpdate(
         id,
         { status: -1, done_report: Date.now(), mistake: mistake._id },
