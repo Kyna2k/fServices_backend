@@ -6,8 +6,8 @@ const Mistake = require("../../models/mistake.model");
 
 class AdminAPIController {
   getListReport = async (req, res) => {
-    const { page, myHandle } = req.query;
-    const perPage = 10;
+    const { page, myHandle,pageSize } = req.query;
+    const perPage = pageSize ?? 10;
     const _page = page || 1;
     const skip = skipPage({ perPage: perPage, page: _page });
     let id = null;
@@ -26,10 +26,12 @@ class AdminAPIController {
       .sort({ createdAt: -1 }) // 1 -1
       .skip(skip)
       .limit(perPage);
-    let count = await Report.find({}).count();
+    let count =  0;
 
     if (_myHandle == 1) {
        count = await Report.find({user_handle: id}).count();
+    }else {
+      count = await Report.find().count();
     }
     return res.json(
       new Response({
@@ -44,8 +46,8 @@ class AdminAPIController {
   getHistoryReports = async (req, res) => {
     const id = req["id"];
     try {
-      const { page } = req.query;
-      const perPage = 10;
+      const { page, pageSize } = req.query;
+      const perPage = pageSize ?? 10;
       const _page = page || 1;
       const skip = skipPage({ perPage: perPage, page: _page });
       const newReport = await Report.find({ user_handle: id })
@@ -55,7 +57,7 @@ class AdminAPIController {
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(perPage);
-      const count = await Report.find({}).count();
+      const count = await Report.find({user_handle: id}).count();
       return res.json(
         new Response({
           data: new Page({

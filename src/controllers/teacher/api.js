@@ -69,8 +69,8 @@ class TeachAPIController {
   getHistoryReports = async (req, res) => {
     const id = req["id"];
     try {
-      const { page } = req.query;
-      const perPage = 3;
+      const { page,pageSize } = req.query;
+      const perPage = pageSize ?? 10;
       const _page = page || 1;
       const skip = skipPage({ perPage: perPage, page:_page });
       const newReport = await Report.find({ user_create: id })
@@ -81,7 +81,7 @@ class TeachAPIController {
         .skip(skip)
         .limit(perPage)
 
-      const count = await Report.find({}).count();
+      const count = await Report.find({user_create: id}).count();
       return res.json(
         new Response({
           data: new Page({
