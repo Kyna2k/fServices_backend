@@ -4,6 +4,16 @@ const moment = require("moment");
 module.exports = function () {
   hbs.registerHelper("pagination", function (n, current, block) {
     var accum = "";
+
+
+    if(n < 5)
+    {
+      for (var i = 0; i < n; ++i) {
+          accum += block.fn(i)
+        };
+        return accum;
+    }
+
     if(current + 5 >= 10)
     {
       for (let i = current - 4; i < current + 3; i++) {

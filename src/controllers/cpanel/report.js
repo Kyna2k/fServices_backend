@@ -7,7 +7,7 @@ class ReportController {
   index = async (req, res) => {
     try {
       const { page } = req.query;
-      const perPage = 1;
+      const perPage = 10;
       const _page = page || 1;
       const skip = skipPage({ perPage: perPage, page: _page });
       const result = await Report.find({})

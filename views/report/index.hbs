@@ -36,7 +36,7 @@
                         <td>{{this.type.name}}</td>
                         <td>{{this.type.time_handle}}</td>
                         <td>{{this.user_create.email}}</td>
-                        <td>{{this.description}}</td>
+                        <td style="max-width: 70px; overflow: hidden;text-overflow: ellipsis;">{{this.description}}</td>
                         <td>
                             {{#statusReport this.status}} {{/statusReport}}
                         </td>
