@@ -21,7 +21,7 @@ class AutWebController {
                 res.locals.session = {
                     avatar: '../assets/img/avatars/1.png'
                 }
-                res.redirect('/report');
+                res.redirect('/dashboard');
             }else{
                 res.redirect(req.get('referer'));
             }
@@ -42,7 +42,7 @@ class AutWebController {
                     website: 'kynalab.com',
                     type: 'Huy đẹp trai',
                 }
-                res.redirect('/report');
+                res.redirect('/dashboard');
             }else{
                 res.redirect('/login');
             }

@@ -94,5 +94,25 @@ class UserController {
       console.log(error);
     }
   };
+  disable = async (req,res) =>{
+    const { id, value } = req.query;
+    let disable = false;
+    if(value != 'true')
+    {
+      disable = true
+    }
+    try {
+      const newUser = await User.findByIdAndUpdate(id, {
+        available: disable,
+      });
+      if (newUser) {
+        res.redirect(req.get("referer"));
+      } else {
+        res.redirect(req.get("referer"));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 module.exports = new UserController();

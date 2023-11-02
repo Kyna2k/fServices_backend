@@ -8,4 +8,5 @@ route.get('/create',[AuthWeb],UserController.store)
 route.post('/create',[AuthWeb],UserController.create)
 route.get('/update',[AuthWeb],UserController.edit)
 route.post('/update',[AuthWeb],UserController.update)
+route.get('/disable',[AuthWeb],UserController.disable)
 module.exports = route;

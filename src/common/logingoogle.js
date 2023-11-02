@@ -15,7 +15,7 @@ const value = passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "/login/with-google-callback",
+      callbackURL: "http://localhost:3000/login/with-google-callback",
     },
     function (accessToken, refreshToken, profile, done) {
       return done(null, profile);
