@@ -1,5 +1,5 @@
 class Response {
-    constructor({status = 200, message, data}){
+    constructor({status = 200, message = "Thành công", data}){
         this.status = status;
         this.message = message;
         this.data = data;
@@ -13,4 +13,19 @@ class FailResponse {
         this.data = data;
     }
 }
-module.exports = {Response, FailResponse}
+class ErrorServerResponse {
+    constructor(){
+        this.status = 500;
+        this.message =  "Error From Server";
+        this.data = null;
+    }
+}
+class Page {
+    constructor({data,currentPage,totalPage}){
+        this.data = data;
+        this.currentPage = currentPage;
+        this.totalPage = totalPage;
+    }
+}
+module.exports = {Response, FailResponse, Page,ErrorServerResponse}
+

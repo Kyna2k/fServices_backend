@@ -1,0 +1,155 @@
+<div class=" order-1 mb-4">
+    <div class="card h-100">
+        <div class="card-header">
+            <h5 class="card-header m-0 me-2 pb-3">Số lượng sự cố trong năm</h5>
+            <div data-date="{{data.value1}}" id="lineAreaChart"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6 order-1 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="card-header m-0 me-2 pb-3">Tỉ lệ các loại sự cố</h5>
+                <div data-date="{{data.value2}}" id="lineAreaChart2"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6 col-lg-6 order-1 mb-4">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="card-header m-0 me-2 pb-3">Thông kê trong ngay</h5>
+                <div data-date="{{data.value3}}" id="lineAreaChart3"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+
+    const _chart3 = document.querySelector("#lineAreaChart3");
+    const getData3 = JSON.parse(_chart3.getAttribute('data-date'));
+    const value15 = getData3.map(e => e._id);
+    const datane = getData3.map(e => e.count);
+    var options = {
+        series: [{
+            data: datane
+        }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: value15,
+        }
+    };
+
+    var chart3 = new ApexCharts(_chart3, options);
+    chart3.render();
+
+</script>
+<script>
+    const _chart2 = document.querySelector("#lineAreaChart2");
+    const getData2 = JSON.parse(_chart2.getAttribute('data-date'));
+    const loaiData = getData2.map((item) => item.count);
+    const name = getData2.map((item) => item.name[0] ?? 'Khác');
+    var options = {
+        series: loaiData,
+        chart: {
+            width: 600,
+            type: 'pie',
+        },
+        labels: name,
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: {
+                    width: 200
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+
+    var chart2 = new ApexCharts(_chart2, options);
+    chart2.render();
+
+</script>
+<script>
+    const _chart = document.querySelector("#lineAreaChart");
+    const getData = _chart.getAttribute('data-date');
+    const myObject = JSON.parse(getData);
+    const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+
+    for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < myObject.length; j++) {
+            if (myObject[j]._id == i + 1) {
+                data[i] = myObject[j].count;
+            }
+        }
+    }
+    var options = {
+        series: [
+            {
+                name: 'Report in Month',
+                data: data
+            }],
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                endingShape: 'rounded'
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: true,
+            width: 2,
+            colors: ['transparent']
+        },
+        xaxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        },
+        yaxis: {
+            title: {
+                text: '$ (thousands)'
+            }
+        },
+        fill: {
+            opacity: 1
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return "$ " + val + " thousands"
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(_chart, options);
+    chart.render(); 
+</script>
